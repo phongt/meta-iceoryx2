@@ -4,15 +4,21 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 inherit cmake
 
-DEPENDS = " iceoryx2 iceoryx2bindings"
+# this dependency is for the static libs
+DEPENDS = " iceoryx2bindings"
 
-S = "${WORKDIR}/publishsubscribe-0.1"
+# this dependency is for the shared libs
+RDEPENDS:${PN} += "iceoryx2bindings"
 
-FILESEXTRAPATHS:prepend := "${THISDIR}:"
-SRC_URI = "file://publishsubscribe.tar.gz"
-
+S = "${WORKDIR}"
+SRC_URI = " \
+    file://CMakeLists.txt \
+    file://src/publisher.c \
+    file://src/subscriber.c \
+    file://src/transmission_data.h \
+"
 do_install() {
   install -d ${D}${bindir}
-  install -m 755 ${S}/../build/example_c_publisher ${D}${bindir}
-  install -m 755 ${S}/../build/example_c_subscriber ${D}${bindir}
+  install -m 755 ${S}/build/example_c_publisher ${D}${bindir}
+  install -m 755 ${S}/build/example_c_subscriber ${D}${bindir}
 }

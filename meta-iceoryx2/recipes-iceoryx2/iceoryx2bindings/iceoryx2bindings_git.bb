@@ -5,26 +5,27 @@ LIC_FILES_CHKSUM = "file://LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
 
 inherit cmake
 
-DEPENDS = " python3 iceoryx iceoryx2"
+DEPENDS = " iceoryx iceoryx2"
 
-SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main \
-           file://0001-add-BUILD_SHARED_LIBS-cmake-variable.patch"
-SRCREV = "f3a45d41a625f1e8867798d88812a33308e705ff"
+SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
+SRCREV = "7966fcf959eaaab204630217efa2f060f112e128"
 
 S = "${WORKDIR}/git"
 
-EXTRA_OECMAKE += " -DRUST_BUILD_ARTIFACT_PATH=${RECIPE_SYSROOT}/usr/lib"
-EXTRA_OECMAKE += " -DCMAKE_INSTALL_PREFIX=${D}/${exec_prefix}"
-EXTRA_OECMAKE += " -DBUILD_SHARED_LIBS=False"
+INSANE_SKIP:${PN} += " already-stripped"
+FILES_SOLIBSDEV = ""
 
+IOX2_STAGING_DIR = "${STAGING_DIR}/iceoryx2-ffi-artifacts"
+EXTRA_OECMAKE += " -DRUST_BUILD_ARTIFACT_PATH=${IOX2_STAGING_DIR}"
+EXTRA_OECMAKE += " -DCMAKE_INSTALL_PREFIX=${D}/${exec_prefix}"
+
+FILES_${PN}-staticdev += "${libdir}/libiceoryx2_ffi.a"
 FILES_${PN}-staticdev += "${libdir}/libiceoryx2_cxx.a"
+FILES:${PN} += "${libdir}/libiceoryx2_ffi.so"
+FILES:${PN} += "${libdir}/libiceoryx2_cxx.so"
 RDEPENDS_${PN}-dev += "${PN}-staticdev"
 BBCLASSEXTEND = "native nativesdk"
 
-do_install() {  
+do_install() {
   cmake --install ${S}/../build
-}
-
-do_install:append() {
-  rm -rf ${D}${libdir}/libiceoryx2_ffi.a
 }
