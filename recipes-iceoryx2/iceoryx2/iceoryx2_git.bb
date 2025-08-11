@@ -9,7 +9,7 @@ do_compile[network] = "1"
 DEPENDS = " iceoryx"
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
-SRCREV = "7966fcf959eaaab204630217efa2f060f112e128"
+SRCREV = "7d2eaebb6c1baad7d50b3e7b13a90b412841a92b"
 
 S = "${WORKDIR}/git"
 
@@ -24,6 +24,7 @@ FILES_SOLIBSDEV = ""
 # via EXTRA_RUSTFLAGS to populate RUSTFLAGS
 RUST_DEBUG_REMAP = "--remap-path-prefix=${WORKDIR}=${TARGET_DBGSRC_DIR}"
 EXTRA_RUSTFLAGS = "${RUST_DEBUG_REMAP}"
+EXTRA_CARGO_FLAGS = " --tests --workspace --all-targets --exclude iceoryx2-ffi-python"
 
 inherit cargo_bin
 

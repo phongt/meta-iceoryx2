@@ -8,7 +8,7 @@ inherit cmake
 DEPENDS = " iceoryx iceoryx2"
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
-SRCREV = "7966fcf959eaaab204630217efa2f060f112e128"
+SRCREV = "7d2eaebb6c1baad7d50b3e7b13a90b412841a92b"
 
 S = "${WORKDIR}/git"
 
