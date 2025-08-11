@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
 # Enable network for the compile task allowing cargo to download dependencies
 do_compile[network] = "1"
 
-DEPENDS = " iceoryx"
+DEPENDS = ""
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
 SRCREV = "7d2eaebb6c1baad7d50b3e7b13a90b412841a92b"

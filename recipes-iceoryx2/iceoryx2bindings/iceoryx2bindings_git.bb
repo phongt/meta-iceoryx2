@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
 
 inherit cmake
 
-DEPENDS = " iceoryx iceoryx2"
+DEPENDS = " iceoryx-hoofs iceoryx2"
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
 SRCREV = "7d2eaebb6c1baad7d50b3e7b13a90b412841a92b"
