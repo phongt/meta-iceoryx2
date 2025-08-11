@@ -15,6 +15,7 @@ S = "${WORKDIR}/git"
 INSANE_SKIP:${PN} += " already-stripped"
 FILES_SOLIBSDEV = ""
 
+# TODO rename iceoryx2-ffi-artifacts when als the examples and tests are placed there
 IOX2_STAGING_DIR = "${STAGING_DIR}/iceoryx2-ffi-artifacts"
 EXTRA_OECMAKE += " -DRUST_BUILD_ARTIFACT_PATH=${IOX2_STAGING_DIR}"
 EXTRA_OECMAKE += " -DCMAKE_INSTALL_PREFIX=${D}/${exec_prefix}"
