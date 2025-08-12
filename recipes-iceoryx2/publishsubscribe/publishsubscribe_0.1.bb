@@ -5,10 +5,10 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 inherit cmake
 
 # this dependency is for the static libs
-DEPENDS = " iceoryx2bindings"
+DEPENDS = " iceoryx2-c"
 
 # this dependency is for the shared libs
-RDEPENDS:${PN} += "iceoryx2bindings"
+RDEPENDS:${PN} += "iceoryx2-c"
 
 S = "${WORKDIR}"
 SRC_URI = " \

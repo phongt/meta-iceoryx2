@@ -1,0 +1,70 @@
+From 15bb0dcedaf7adfe6459091171efbe8b7147b2e6 Mon Sep 17 00:00:00 2001
+From: Mathias Kraus <elboberido@m-hias.de>
+Date: Tue, 12 Aug 2025 13:51:27 +0200
+Subject: [PATCH] Make C bindings build separately
+
+---
+ CMakeLists.txt                          | 3 ++-
+ cmake/iceoryx2-cConfigVersion.cmake     | 4 ++--
+ cmake/install.cmake                     | 2 +-
+ tests/CMakeLists.txt                    | 2 +-
+ 4 files changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c85fd17b..d591bac6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -11,7 +11,8 @@
+ # SPDX-License-Identifier: Apache-2.0 OR MIT
+ 
+ cmake_minimum_required(VERSION 3.22)
+-project(iceoryx2-c VERSION ${IOX2_VERSION_STRING} LANGUAGES C)
++set(IOX2_VERSION 0.6.1)
++project(iceoryx2-c VERSION ${IOX2_VERSION} LANGUAGES C)
+ 
+ set(PREFIX iceoryx2/v${CMAKE_PROJECT_VERSION})
+ 
+diff --git a/cmake/iceoryx2-cConfigVersion.cmake b/cmake/iceoryx2-cConfigVersion.cmake
+index ae909143..f6f1dab8 100644
+--- a/cmake/iceoryx2-cConfigVersion.cmake
++++ b/cmake/iceoryx2-cConfigVersion.cmake
+@@ -14,8 +14,8 @@
+ ########## dummyConfig.cmake to be able to use find_package with a specific version with the source tree ##########
+ #
+ 
+-set(IOX2_VERSION_STRING "0.6.1")
+-set(PACKAGE_VERSION ${IOX2_VERSION_STRING})
++set(IOX2_VERSION 0.6.1)
++set(PACKAGE_VERSION ${IOX2_VERSION})
+ 
+ if(PACKAGE_VERSION VERSION_LESS PACKAGE_FIND_VERSION)
+     set(PACKAGE_VERSION_COMPATIBLE FALSE)
+diff --git a/cmake/install.cmake b/cmake/install.cmake
+index a14fa1d7..b423731d 100644
+--- a/cmake/install.cmake
++++ b/cmake/install.cmake
+@@ -48,7 +48,7 @@ set(DESTINATION_DATAROOTDIR ${CMAKE_INSTALL_DATAROOTDIR})
+ include(CMakePackageConfigHelpers)
+ write_basic_package_version_file(
+     ${PACKAGE_VERSION_FILE}
+-    VERSION ${IOX2_VERSION_STRING}
++    VERSION ${IOX2_VERSION}
+     COMPATIBILITY AnyNewerVersion
+ )
+ configure_package_config_file(
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index e5f51ec3..1d82ca5a 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -12,7 +12,7 @@
+ 
+ cmake_minimum_required(VERSION 3.22)
+ 
+-project(iceoryx2-c-tests VERSION ${IOX2_VERSION_STRING} LANGUAGES CXX)
++project(iceoryx2-c-tests VERSION ${IOX2_VERSION} LANGUAGES CXX)
+ 
+ include(cmake/googletest.cmake)
+ 
+-- 
+2.50.1
+
