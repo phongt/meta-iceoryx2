@@ -12,3 +12,7 @@ SRCREV = "a22f16a12192a007e0695ba4375fe2f4913d5733"
 S = "${WORKDIR}/git/iceoryx_hoofs"
 
 EXTRA_OECMAKE = "-DIOX_USE_HOOFS_SUBSET_ONLY=ON"
+
+RDEPENDS:${PN}-dev += "iceoryx-platform-dev"
+RDEPENDS:${PN} += "iceoryx-platform"
+BBCLASSEXTEND = "native nativesdk"

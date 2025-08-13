@@ -14,6 +14,8 @@ SRCREV = "7d2eaebb6c1baad7d50b3e7b13a90b412841a92b"
 
 S = "${WORKDIR}/git"
 
+inherit cargo_bin
+
 INSANE_SKIP:${PN} += " already-stripped"
 FILES_SOLIBSDEV = ""
 
@@ -24,23 +26,17 @@ FILES_SOLIBSDEV = ""
 # At this time, meta-rust-bin allows to pass in additional flags
 # via EXTRA_RUSTFLAGS to populate RUSTFLAGS
 RUST_DEBUG_REMAP = "--remap-path-prefix=${WORKDIR}=${TARGET_DBGSRC_DIR}"
+# See https://github.com/rust-embedded/meta-rust-bin/blob/master/classes/cargo_bin.bbclass
+# for variables to control the compilations
 EXTRA_RUSTFLAGS = "${RUST_DEBUG_REMAP}"
-EXTRA_CARGO_FLAGS = " --tests --workspace --all-targets --exclude iceoryx2-ffi-python"
-
-inherit cargo_bin
-
-# See https://github.com/rust-embedded/meta-rust-bin/blob/master/classes/cargo_bin.bbclass for variables to control the compilations
 CARGO_FEATURES = "libc_platform"
 EXTRA_CARGO_FLAGS = " --tests --workspace --all-targets --exclude iceoryx2-ffi-python"
-# EXTRA_CARGO_FLAGS = " --tests --examples"
 
-# TODO
-# license location: https://github.com/rust-embedded/meta-rust-bin/tree/master/files/common-licenses
-# versioned recipes: https://github.com/rust-embedded/meta-rust-bin/tree/master/recipes-devtools/rust
+BBCLASSEXTEND = "native nativesdk"
 
 PACKAGES =+ "${PN}-cli ${PN}-benchmarks ${PN}-examples ${PN}-tests"
 
-IOX2_STAGING_DIR = "${STAGING_DIR}/iceoryx2-ffi-artifacts"
+IOX2_STAGING_DIR = "${STAGING_DIR}/iceoryx2-artifacts"
 
 do_install() {
     install -d ${IOX2_STAGING_DIR}

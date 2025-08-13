@@ -12,3 +12,5 @@ SRCREV = "a22f16a12192a007e0695ba4375fe2f4913d5733"
 S = "${WORKDIR}/git/iceoryx_platform"
 
 EXTRA_OECMAKE = "-DIOX_PLATFORM_MINIMAL_POSIX=ON"
+
+BBCLASSEXTEND = "native nativesdk"

@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://../../LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e90
 
 inherit cmake
 
-DEPENDS = " iceoryx-hoofs iceoryx2"
+DEPENDS = " iceoryx2"
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main \
            file://0001-Make-C-bindings-build-separately.patch"
@@ -16,8 +16,7 @@ S = "${WORKDIR}/git/iceoryx2-ffi/c"
 INSANE_SKIP:${PN} += " already-stripped"
 FILES_SOLIBSDEV = ""
 
-# TODO rename iceoryx2-ffi-artifacts when als the examples and tests are placed there
-IOX2_STAGING_DIR = "${STAGING_DIR}/iceoryx2-ffi-artifacts"
+IOX2_STAGING_DIR = "${STAGING_DIR}/iceoryx2-artifacts"
 EXTRA_OECMAKE += " -DRUST_BUILD_ARTIFACT_PATH=${IOX2_STAGING_DIR}"
 EXTRA_OECMAKE += " -DCMAKE_INSTALL_PREFIX=${D}/${exec_prefix}"
 
