@@ -1,4 +1,7 @@
-SUMMARY = "iceoryx-hoofs"
+SUMMARY = "iceoryx classic C++ base library"
+DESCRIPTION = "This package contains the iceoryx classic C++ base library"
+HOMEPAGE = "https://iceoryx.io"
+BUGTRACKER = "https://github.com/eclipse-iceoryx/iceoryx/issues"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=46d6aa0ba1fa2ed247cd8d42f20b72f4"
 

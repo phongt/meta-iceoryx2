@@ -1,4 +1,7 @@
 SUMMARY = "iceoryx2"
+DESCRIPTION = "This package is used to build the iceoryx2 Rust artifacts"
+HOMEPAGE = "https://iceoryx.io"
+BUGTRACKER = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 LICENSE = "Apache-2.0 | MIT"
 LIC_FILES_CHKSUM = "file://LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
                     file://LICENSE-MIT;md5=b377b220f43d747efdec40d69fcaa69d"
@@ -6,8 +9,7 @@ LIC_FILES_CHKSUM = "file://LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
 # Enable network for the compile task allowing cargo to download dependencies
 do_compile[network] = "1"
 
-# zlib and expath due to python ... maybe just add python ... should be build dependency
-DEPENDS = " zlib expat python3"
+DEPENDS = " "
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
 SRCREV = "7d2eaebb6c1baad7d50b3e7b13a90b412841a92b"
@@ -74,18 +76,34 @@ do_install() {
     done
 }
 
-SUMMARY:${PN}-cli = "Package for iceoryx2-cli"
+SUMMARY:${PN}-cli = "The iceoryx2 command line tools"
+DESCRIPTION:${PN}-cli = "This package contains the iceoryx2 command line tools. \
+                         Use 'iox2 --list' to show a list of all available commands."
+HOMEPAGE:${PN}-cli = "https://iceoryx.io"
+BUGTRACKER:${PN}-cli = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 FILES:${PN}-cli += "${bindir}/iox2"
 FILES:${PN}-cli += "${bindir}/iox2-config"
 FILES:${PN}-cli += "${bindir}/iox2-node"
 FILES:${PN}-cli += "${bindir}/iox2-service"
 FILES:${PN}-cli += "${bindir}/iox2-tunnel"
 
-SUMMARY:${PN}-benchmarks = "Package for iceoryx2-benchmarks"
+SUMMARY:${PN}-benchmarks = "The iceoryx2 benchmarks"
+DESCRIPTION:${PN}-benchmarks = "This package contains the iceoryx2 benchmarks. \
+                         They are available in '/usr/bin/iceoryx2/benchmarks'"
+HOMEPAGE:${PN}-benchmarks = "https://iceoryx.io"
+BUGTRACKER:${PN}-benchmarks = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 FILES:${PN}-benchmarks += "${bindir}/iceoryx2/benchmarks/*"
 
-SUMMARY:${PN}-examples = "Package for iceoryx2-examples"
+SUMMARY:${PN}-examples = "The iceoryx2 Rust examples"
+DESCRIPTION:${PN}-examples = "This package contains the iceoryx2 Rust examples. \
+                         They are available in '/usr/bin/iceoryx2/examples'"
+HOMEPAGE:${PN}-examples = "https://iceoryx.io"
+BUGTRACKER:${PN}-examples = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 FILES:${PN}-examples += "${bindir}/iceoryx2/examples/*"
 
-SUMMARY:${PN}-tests = "Package for iceoryx2-tests"
+SUMMARY:${PN}-tests = "The iceoryx2 Rust tests"
+DESCRIPTION:${PN}-tests = "This package contains the iceoryx2 Rust tests. \
+                         They are available in '/usr/bin/iceoryx2/tests'"
+HOMEPAGE:${PN}-tests = "https://iceoryx.io"
+BUGTRACKER:${PN}-tests = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 FILES:${PN}-tests += "${bindir}/iceoryx2/tests/*"
