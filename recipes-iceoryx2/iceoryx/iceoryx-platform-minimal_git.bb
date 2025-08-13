@@ -1,5 +1,5 @@
 SUMMARY = "iceoryx classic platform abstraction layer"
-DESCRIPTION = "This package contains the iceoryx classic platform abstraction layer"
+DESCRIPTION = "This package contains the iceoryx classic platform abstraction layer in a minimal version, intended to be used with the iceoryx2 C++ bindings."
 HOMEPAGE = "https://iceoryx.io"
 BUGTRACKER = "https://github.com/eclipse-iceoryx/iceoryx/issues"
 LICENSE = "Apache-2.0"

@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://../../LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e90
 
 inherit cmake
 
-DEPENDS = " iceoryx-platform iceoryx-hoofs iceoryx2-c"
+DEPENDS = " iceoryx-hoofs-subset iceoryx2-c"
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main \
            file://0001-Make-CXX-bindings-build-separately.patch \
@@ -24,8 +24,8 @@ EXTRA_OECMAKE += " -DCMAKE_INSTALL_PREFIX=${D}/${exec_prefix}"
 
 FILES:${PN}-staticdev += "${libdir}/libiceoryx2_cxx.a"
 FILES:${PN} += "${libdir}/libiceoryx2_cxx.so"
-RDEPENDS:${PN}-dev += "${PN}-staticdev iceoryx-hoofs-dev iceoryx-platform-dev"
-RDEPENDS:${PN} += "iceoryx-hoofs iceoryx-platform iceoryx2-c"
+RDEPENDS:${PN}-dev += "${PN}-staticdev iceoryx-hoofs-subset-dev"
+RDEPENDS:${PN} += "iceoryx-hoofs-subset iceoryx2-c"
 BBCLASSEXTEND = "native nativesdk"
 
 do_install() {
