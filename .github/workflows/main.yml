@@ -29,6 +29,9 @@ jobs:
     - name: Build image with kas
       run: |
         source kas-env/bin/activate
+        pwd
+        ls
+        find ${PWD}
         kas build meta-iceoryx2/kas/kirkstone.yml
 
     - name: Upload built image
