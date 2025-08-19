@@ -1,0 +1,38 @@
+name: Yocto CI with kas
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip python3-venv git diffstat chrpath \
+            gawk wget tar cpio gcc g++ make unzip xz-utils zstd
+
+    - name: Install kas
+      run: |
+        python3 -m venv kas-env
+        source kas-env/bin/activate
+        pip install kas
+
+    - name: Build image with kas
+      run: |
+        source kas-env/bin/activate
+        kas build meta-iceoryx2/kas/kirkstone.yml
+
+    - name: Upload built image
+      uses: actions/upload-artifact@v4
+      with:
+        name: yocto-image
+        path: build/tmp/deploy/images
