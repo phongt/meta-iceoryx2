@@ -30,8 +30,9 @@ jobs:
     - name: Build image with kas
       run: |
         source kas-env/bin/activate
-        cd $GITHUB_WORKSPACE
-        kas build meta-iceoryx2/kas/kirkstone.yml
+        pwd
+        find .
+        kas build kas/kirkstone.yml
 
     - name: Upload built image
       uses: actions/upload-artifact@v4
