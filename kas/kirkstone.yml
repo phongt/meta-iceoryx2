@@ -6,7 +6,7 @@ header:
 machine: qemux86-64
 distro: poky
 
-target: iceoryx2-core-image-full
+target: iceoryx2-image-full
 
 repos:
   poky:
