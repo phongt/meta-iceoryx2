@@ -15,3 +15,8 @@ repos:
     layers:
       meta:
       meta-poky:
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    branch: scarthgap
+    layers:
+      meta-oe:
