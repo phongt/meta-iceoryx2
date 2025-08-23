@@ -1,11 +1,12 @@
 # meta-yocto-iceoryx2
+
 Yocto Layer for Eclipse iceoryx2™
 
-### How to build iceoryx2-core-image-full with kas
+### How to build iceoryx2-image-full with kas
 
 ```
-$ mkdir yp-iceoryx
-$ cd yp-iceoryx
+$ mkdir yocto-iceoryx2
+$ cd yocto-iceoryx2
 $ python3 -m venv .venv
 $ source .venv/bin/activate
 $ pip3 install kas
