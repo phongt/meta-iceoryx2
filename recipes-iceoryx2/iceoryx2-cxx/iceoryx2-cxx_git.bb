@@ -6,7 +6,7 @@ LICENSE = "Apache-2.0 | MIT"
 LIC_FILES_CHKSUM = "file://LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
                     file://LICENSE-MIT;md5=b377b220f43d747efdec40d69fcaa69d"
 
-inherit cmake
+inherit cmake ptest
 
 # NOTE:: googletest requires meta-openembedded/meta-oe
 DEPENDS = " \
@@ -16,7 +16,8 @@ DEPENDS = " \
   googletest \
   "
 
-SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main \
+          file://run-ptest"
 SRCREV = "1685d7d7a9759e92464782ff14a7d6418b033f28"
 
 S = "${WORKDIR}/git/iceoryx2-cxx"
@@ -38,6 +39,12 @@ do_install() {
 
   install -d ${D}${bindir}/iceoryx2/tests/cxx
   install -m 0755 ${B}/tests/iceoryx2-cxx-tests ${D}${bindir}/iceoryx2/tests/cxx
+}
+
+do_install_ptest() {
+    install -d ${D}/${PTEST_PATH}/tests
+    install ${B}/tests/iceoryx2-cxx-tests ${D}/${PTEST_PATH}/tests
+    install ${S}/../../run-ptest ${D}/${PTEST_PATH}/
 }
 
 SUMMARY:${PN}-tests = "The iceoryx2 Rust tests"

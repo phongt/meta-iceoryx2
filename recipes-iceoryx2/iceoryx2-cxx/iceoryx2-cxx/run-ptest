@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if ./tests/iceoryx2-cxx-tests ; then
+    echo "PASS: iceoryx2-cxx-tests"
+else
+    echo "FAIL: iceoryx2-cxx-tests"
+fi
