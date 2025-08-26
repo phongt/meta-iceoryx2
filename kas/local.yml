@@ -7,8 +7,9 @@ local_conf_header:
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
     INHERIT += "buildstats buildstats-summary buildhistory"
     INHERIT += "report-error"
-    EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
+    EXTRA_IMAGE_FEATURES ?= "debug-tweaks ptest-pkgs"
     USER_CLASSES ?= "buildstats"
+    DISTRO_FEATURES:append = " ptest"
 
   diskmon: |
     BB_DISKMON_DIRS ??= "\
