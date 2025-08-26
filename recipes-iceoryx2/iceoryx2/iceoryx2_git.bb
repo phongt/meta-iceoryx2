@@ -11,12 +11,13 @@ do_compile[network] = "1"
 
 DEPENDS = ""
 
-SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main \
+           file://run-ptest"
 SRCREV = "1685d7d7a9759e92464782ff14a7d6418b033f28"
 
 S = "${WORKDIR}/git"
 
-inherit cargo_bin
+inherit cargo_bin ptest
 
 INSANE_SKIP:${PN} += "already-stripped"
 FILES_SOLIBSDEV = ""
@@ -76,6 +77,16 @@ do_install() {
     done
 }
 
+do_install_ptest() {
+    install -d ${D}/${PTEST_PATH}/tests
+    for test in ${CARGO_BINDIR}/deps/*; do
+        if [ -f "$test" ] && [ -x "$test" ] && [ "${test##*.}" != "so" ]; then
+            install -m 0755 "$test" ${D}/${PTEST_PATH}/tests
+        fi
+    done
+    install ${S}/../run-ptest ${D}/${PTEST_PATH}/
+}
+
 SUMMARY:${PN}-cli = "The iceoryx2 command line tools"
 DESCRIPTION:${PN}-cli = "This package contains the iceoryx2 command line tools. \
                          Use 'iox2 --list' to show a list of all available commands."
@@ -107,3 +118,5 @@ DESCRIPTION:${PN}-tests = "This package contains the iceoryx2 Rust tests. \
 HOMEPAGE:${PN}-tests = "https://iceoryx.io"
 BUGTRACKER:${PN}-tests = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 FILES:${PN}-tests += "${bindir}/iceoryx2/tests/rust/*"
+
+RDEPENDS:${PN}-ptest:remove = "iceoryx2"

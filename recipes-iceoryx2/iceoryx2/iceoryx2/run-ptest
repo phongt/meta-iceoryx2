@@ -1,0 +1,10 @@
+#!/bin/sh
+
+for test in ./tests/* 
+do
+    if ${test} ; then
+        echo "PASS: ${test}"
+    else
+        echo "FAIL: ${test}"
+    fi
+done
