@@ -3,8 +3,8 @@ DESCRIPTION = "This package contains the iceoryx2 C examples"
 HOMEPAGE = "https://iceoryx.io"
 BUGTRACKER = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 LICENSE = "Apache-2.0 | MIT"
-LIC_FILES_CHKSUM = "file://../../LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
-                    file://../../LICENSE-MIT;md5=b377b220f43d747efdec40d69fcaa69d"
+LIC_FILES_CHKSUM = "file://LICENSE-APACHE;md5=22a53954e4e0ec258dfce4391e905dac \
+                    file://LICENSE-MIT;md5=b377b220f43d747efdec40d69fcaa69d"
 
 inherit cmake
 
@@ -13,7 +13,7 @@ DEPENDS = " \
   "
 
 SRC_URI = "git://github.com/eclipse-iceoryx/iceoryx2.git;protocol=https;branch=main"
-SRCREV = "af5669e46ebc2460209841b44f5bd7bd843b1adc"
+SRCREV = "1685d7d7a9759e92464782ff14a7d6418b033f28"
 
 S = "${WORKDIR}/git/examples/c"
 
