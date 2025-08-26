@@ -7,6 +7,7 @@ local_conf_header:
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
     INHERIT += "buildstats buildstats-summary buildhistory"
     INHERIT += "report-error"
+    INHERIT += "rm_work"
     EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
     USER_CLASSES ?= "buildstats"
 
