@@ -68,23 +68,19 @@ do_install() {
             install -m 0755 "$example" ${D}${bindir}/iceoryx2/examples/rust
         fi
     done
-
-    install -d ${D}${bindir}/iceoryx2/tests/rust
-    for test in ${CARGO_BINDIR}/deps/*; do
-        if [ -f "$test" ] && [ -x "$test" ] && [ "${test##*.}" != "so" ]; then
-            install -m 0755 "$test" ${D}${bindir}/iceoryx2/tests/rust
-        fi
-    done
 }
 
 do_install_ptest() {
     install -d ${D}/${PTEST_PATH}/tests
     for test in ${CARGO_BINDIR}/deps/*; do
         if [ -f "$test" ] && [ -x "$test" ] && [ "${test##*.}" != "so" ]; then
+            case "$test" in
+                *benchmark*|*macro*|*tunnels_end_to_end*) continue ;;
+            esac
             install -m 0755 "$test" ${D}/${PTEST_PATH}/tests
         fi
     done
-    install ${S}/../run-ptest ${D}/${PTEST_PATH}/
+    install -m 0755 ${S}/../run-ptest ${D}/${PTEST_PATH}/
 }
 
 SUMMARY:${PN}-cli = "The iceoryx2 command line tools"
@@ -111,12 +107,5 @@ DESCRIPTION:${PN}-examples = "This package contains the iceoryx2 Rust examples. 
 HOMEPAGE:${PN}-examples = "https://iceoryx.io"
 BUGTRACKER:${PN}-examples = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
 FILES:${PN}-examples += "${bindir}/iceoryx2/examples/rust/*"
-
-SUMMARY:${PN}-tests = "The iceoryx2 Rust tests"
-DESCRIPTION:${PN}-tests = "This package contains the iceoryx2 Rust tests. \
-                           They are available in '/usr/bin/iceoryx2/tests'"
-HOMEPAGE:${PN}-tests = "https://iceoryx.io"
-BUGTRACKER:${PN}-tests = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
-FILES:${PN}-tests += "${bindir}/iceoryx2/tests/rust/*"
 
 RDEPENDS:${PN}-ptest:remove = "iceoryx2"
