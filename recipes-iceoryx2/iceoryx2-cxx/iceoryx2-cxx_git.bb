@@ -36,20 +36,11 @@ BBCLASSEXTEND = "native nativesdk"
 
 do_install() {
   cmake --install ${S}/../../build
-
-  install -d ${D}${bindir}/iceoryx2/tests/cxx
-  install -m 0755 ${B}/tests/iceoryx2-cxx-tests ${D}${bindir}/iceoryx2/tests/cxx
 }
 
 do_install_ptest() {
     install -d ${D}/${PTEST_PATH}/tests
-    install ${B}/tests/iceoryx2-cxx-tests ${D}/${PTEST_PATH}/tests
-    install ${S}/../../run-ptest ${D}/${PTEST_PATH}/
+    install -m 0755  ${B}/tests/iceoryx2-cxx-tests ${D}/${PTEST_PATH}/tests
+    install -m 0755  ${S}/../../run-ptest ${D}/${PTEST_PATH}/
 }
 
-SUMMARY:${PN}-tests = "The iceoryx2 Rust tests"
-DESCRIPTION:${PN}-tests = "This package contains the iceoryx2 Rust tests. \
-                           They are available in '/usr/bin/iceoryx2/tests'"
-HOMEPAGE:${PN}-tests = "https://iceoryx.io"
-BUGTRACKER:${PN}-tests = "https://github.com/eclipse-iceoryx/iceoryx2/issues"
-FILES:${PN}-tests += "${bindir}/iceoryx2/tests/cxx/*"
