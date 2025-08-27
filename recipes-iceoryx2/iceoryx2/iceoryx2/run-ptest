@@ -11,6 +11,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0 OR MIT
 
+export RUST_TEST_THREADS=1
+
 for test in ./tests/* 
 do
     if ${test} ; then

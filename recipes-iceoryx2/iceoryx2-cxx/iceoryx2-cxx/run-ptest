@@ -11,6 +11,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0 OR MIT
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd  $SCRIPT_DIR
+
 if ./tests/iceoryx2-cxx-tests ; then
     echo "PASS: iceoryx2-cxx-tests"
 else
