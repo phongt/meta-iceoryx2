@@ -93,7 +93,6 @@ contain the libraries and CLI tools but also the examples and tests.
 For enable unit tests of iceoryx2 and iceoryx2-cxx, add to local.conf
 
 ```sh
-EXTRA_IMAGE_FEATURES:append = " ptest-pkgs"
 DISTRO_FEATURES:append = " ptest"
 ```
 
